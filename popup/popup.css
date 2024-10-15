@@ -1,0 +1,66 @@
+.page{
+    width: 20rem;
+    height: 30rem;
+    padding-inline: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tab_box{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 2px solid rgb(229, 229,229);
+    position: relative;
+}
+
+.tab_box .tab_btn{
+    font-size: 16px;
+    font-weight: bold;
+    color: #919191;
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.tab_box .tab_btn.active{
+    color: black;
+
+}
+
+.content-container{
+    padding: 16px;
+    padding-top: 0;
+}
+
+.content-container .content{
+    display: none;
+    animation: moving .5s ease;
+}
+
+@keyframes moving {
+    from{transform: translateX(50px);opacity: 0;}
+    to{transform: translateX(0px);opacity: 1;}
+}
+
+.content-container .content.active{
+    display: block;
+}
+
+.content-container .content h2{
+     margin-bottom: 10px;
+}
+
+.line{
+    position: absolute;
+    top: 2.3rem;
+    left: 0.5rem;
+    width: 64px;
+    height: 3px;
+    background-color: black;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
