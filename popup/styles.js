@@ -15,4 +15,16 @@ buttons.forEach((button, index) => {
         content.forEach((con) => {con.classList.remove("active")});
         content[index].classList.add("active");
     });
-})
+});
+
+
+function Accordion(){
+    const accordion = document.querySelectorAll(".contentBox");
+    accordion.forEach((acc) => {
+        acc.addEventListener('click', () => {
+            acc.classList.toggle('active-acc');
+        })
+    })
+}
+
+Accordion();
