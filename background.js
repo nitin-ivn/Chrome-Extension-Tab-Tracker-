@@ -1,3 +1,5 @@
+import { insertData,UpdateClosingTime } from "./data/tabData.js";
+
 let tabData = {};
 
 chrome.tabs.onActivated.addListener((info) => {
@@ -18,11 +20,12 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
       if (tabData[tabId]) {  
         tabData[tabId].title = tab.title;
         tabData[tabId].url = tab.url;  
-        console.log(tabData[tabId]);  
+        insertData(tabData[tabId]);  
       }  
     }  
 });
 
 chrome.tabs.onRemoved.addListener((tabId, info) => {
-    tabData[tabId].closedAt = Date.now();
+    UpdateClosingTime(tabId);
+    console.log(tabId);
 })

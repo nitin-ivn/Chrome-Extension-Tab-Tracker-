@@ -95,7 +95,6 @@
 }
 
 .accordion{
-
 }
 
 .accordion .contentBox{
@@ -154,7 +153,7 @@
     height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: all 0.5s;
+    transition: all 0.6s;
 }
 
 .accordion .contentBox.active-acc .content-desc{
