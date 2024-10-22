@@ -1,4 +1,5 @@
-import { insertData,UpdateClosingTime } from "./data/tabData.js";
+import { insertData, UpdateClosingTime, UpdateTab } from "./data/tabData.js";
+import { renderTabs } from "./popup/currentTabs.js";  
 
 let tabData = {};
 
@@ -11,21 +12,20 @@ chrome.tabs.onActivated.addListener((info) => {
             closedAt: null
         };
 
-        console.log(tabData[info.tabId]);
+        insertData(info.tabId,tab.title,tab.url,Date.now());
+         renderTabs();
     });
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {  
     if (changeInfo.title) {  
-      if (tabData[tabId]) {  
-        tabData[tabId].title = tab.title;
-        tabData[tabId].url = tab.url;  
-        insertData(tabData[tabId]);  
-      }  
+        UpdateTab(tabId,tab.title,tab.url);
     }  
 });
 
 chrome.tabs.onRemoved.addListener((tabId, info) => {
-    UpdateClosingTime(tabId);
-    console.log(tabId);
-})
+    if(tabData[tabId]){
+        UpdateClosingTime(tabId);
+        console.log(tabId + "closed");
+    }
+});
